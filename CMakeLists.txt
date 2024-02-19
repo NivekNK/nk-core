@@ -25,25 +25,25 @@ endif()
 #==================== Sources ======================
 target_sources(${PROJECT_NAME}
 PRIVATE
-    src/test.cpp
+    src/memory/allocator.cpp
 )
 
 #==================== Threads ======================
-# if(NOT CMAKE_THREAD_PREFER_PTHREAD)
-#     set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-# endif()
-#
-# if(NOT THREADS_PREFER_PTHREAD_FLAG)
-#     set(THREADS_PREFER_PTHREAD_FLAG TRUE)
-# endif()
-#
-# find_package(Threads REQUIRED)
+if(NOT CMAKE_THREAD_PREFER_PTHREAD)
+    set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+endif()
+
+if(NOT THREADS_PREFER_PTHREAD_FLAG)
+    set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+endif()
+
+find_package(Threads REQUIRED)
 
 #================== Include Files ==================
-# target_link_libraries(${PROJECT_NAME}
-# PRIVATE
-#     Threads::Threads
-# )
+target_link_libraries(${PROJECT_NAME}
+PRIVATE
+    Threads::Threads
+)
 
 target_include_directories(${PROJECT_NAME}
 PRIVATE
